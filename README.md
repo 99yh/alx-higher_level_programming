@@ -11,7 +11,7 @@ its important to have an isolated environment to be specific to the work related
 
 To make this possible we can simply install the package related to the version we need usnig the package manager in our linux distro (in my case it is pacman; I use Arch btw ^_^), but I prefer to have this setup isolated from the global PATH where every thing is connected together, hence we will need it only for specific projects.
 
-1. Get the vesion you want from python/downloads
+1. Get the vesion you want from [python/downloads]
 ```sh
 wget https://www.python.org/ftp/python/3.8.5/Python-3.8.5.tar.xz
 ```
@@ -53,7 +53,7 @@ make altinstall clean
 
 Now we have the specific Python release we want, and it is isolated from the PATH directorys meaning that if I typed python in the terminal it will execute the version that is inside the PATH directorys and this is what I want; to avoid any conflict with the project specific Python and the global Python release used by any program in the system.
 
-to make a virtual Python environmet:
+to make a virtual Python environmet see [python/venv]:
 ```sh
 <path/to/python/executable> -m venv </path/to/new-virt-evn/directory>
 ```
@@ -77,4 +77,4 @@ deactivate
 
 
 [python/downloads]: https://www.python.org/downloads/
-[virtual Python environmet]: https://docs.python.org/3/library/venv.html
+[python/venv]: https://docs.python.org/3/library/venv.html
