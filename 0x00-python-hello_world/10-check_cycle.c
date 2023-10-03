@@ -1,32 +1,23 @@
 #include "lists.h"
 /**
- * check_cycle - checks if a linked-list
- *               contains a cycle or not
- *
- * @head: head of a linked-list to check
- * Return: (0) if  no cycle found
- *         (1) if any cycle found
+ * check_cycle - checks for  cycles in a linked-list
+ * @head:  head of a linked-list to check for cycles
+ * Return: (0) if no cycle or (1) if any cycle found
  */
 int check_cycle(listint_t *head)
 {
-	listint_t *pre, *now;
-	int idx, nod;
-
-	now = head;
-	nod = 0;
-	while (now)
+	listint_t *pre, *now = head;
+	int idx, nod = 0;
+	
+	while (now && ++nod)
 	{
 		now = now->next;
 		pre = head;
-		nod++;
 		idx = 0;
-		while (idx < nod)
-		{
-			if (now == pre)
-				return (1);
+		while (now != pre && ++idx)
 			pre = pre->next;
-			idx++;
-		}
+		if (idx < nod)
+			return (1);
 	}
 	return (0);
 }
