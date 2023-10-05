@@ -4,7 +4,8 @@ if __name__ == "__main__":
 
     n = len(sys.argv) - 1
     i = 1
-    print(f'{n:d} argument{"s:" if n > 1 else ":"}')
+    if n:
+        print(f'{n:d} argument{"s:" if n > 1 else ":"}')
     while i <= n:
         print(f"{i}: {sys.argv[i]}")
         i += 1
