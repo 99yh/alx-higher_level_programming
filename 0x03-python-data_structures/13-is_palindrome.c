@@ -18,7 +18,7 @@ int is_palindrome(listint_t **head)
 		return (0);
 
 	move = node = *head;
-	while (move && node->next)
+	while (move && move->next)
 	{
 		move = move->next->next;
 		if (len < INT_BUFF)
