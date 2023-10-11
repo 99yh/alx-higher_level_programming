@@ -53,7 +53,7 @@ void print_python_list(PyObject *p)
 			item_type = (PyList_GET_ITEM(p, idx)->ob_type)->tp_name;
 			printf("Element %lu: %s\n", idx, item_type);
 			if (strcmp(item_type, "bytes") == 0)
-				print_python_bytes(p);
+				print_python_bytes(PyList_GET_ITEM(p, idx));
 		}
 	}
 }
