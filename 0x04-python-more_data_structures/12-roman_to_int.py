@@ -5,11 +5,13 @@ def roman_to_int(roman_string):
     numerals = {'I': 1, 'V': 5, 'X': 10, 'L': 50,
                 'C': 100, 'D': 500, 'M': 1000}
     num = 0
+    before = 0
     for c in roman_string.upper():
         if c in numerals:
-            if num < numerals[c]:
-                num *= -1
-            num += numerals[c]
+            if before < numerals[c]:
+                num -= before * 2
+            before = numerals[c]
+            num += before
         else:
             return 0
     return num
