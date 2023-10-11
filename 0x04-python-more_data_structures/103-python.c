@@ -14,7 +14,7 @@ void print_python_bytes(PyObject *p)
 	write(STDOUT_FILENO, "[.] bytes object info\n", 22);
 	if (p == NULL || strcmp((p->ob_type)->tp_name, "bytes") != 0)
 	{
-		write(STDERR_FILENO, "  [ERROR] Invalid Bytes Object\n", 31);
+		write(STDOUT_FILENO, "  [ERROR] Invalid Bytes Object\n", 31);
 		return;
 	}
 
