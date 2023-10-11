@@ -50,7 +50,6 @@ void print_python_list(PyObject *p)
 
 		for (idx = 0; idx < list_size; idx++)
 		{
-/*			item_type = Py_TYPE(PyList_GetItem(p, idx))->tp_name;*/
 			item_type = (PyList_GET_ITEM(p, idx)->ob_type)->tp_name;
 			printf("Element %lu: %s\n", idx, item_type);
 			if (strcmp(item_type, "bytes") == 0)
