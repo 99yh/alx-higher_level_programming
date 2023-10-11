@@ -11,10 +11,10 @@ void print_python_bytes(PyObject *p)
 	Py_ssize_t bytes_size, n_bytes, i;
 	char *try_str;
 
-	write(STDIN_FILENO, "[.] bytes object info\n", 22);
+	write(STDOUT_FILENO, "[.] bytes object info\n", 22);
 	if (p == NULL || strcmp((p->ob_type)->tp_name, "bytes") != 0)
 	{
-		write(STDIN_FILENO, "  [ERROR] Invalid Bytes Object\n", 31);
+		write(STDOUT_FILENO, "  [ERROR] Invalid Bytes Object\n", 31);
 		return;
 	}
 
@@ -40,7 +40,7 @@ void print_python_list(PyObject *p)
 	Py_ssize_t idx, list_size, Allocated;
 	const char *item_type;
 
-	write(STDIN_FILENO, "[*] Python list info\n", 21);
+	write(STDOUT_FILENO, "[*] Python list info\n", 21);
 	if (p && PyList_CheckExact(p))
 	{
 		list_size = PyList_GET_SIZE(p);
