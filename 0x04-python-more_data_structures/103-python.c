@@ -14,16 +14,16 @@ void print_python_bytes(PyObject *p)
 	write(STDOUT_FILENO, "[.] bytes object info\n", 22);
 	if (p == NULL || strcmp((p->ob_type)->tp_name, "bytes") != 0)
 	{
-		write(STDOUT_FILENO, "  [ERROR] Invalid Bytes Object\n", 31);
+		write(STDOUT_FILENO, "\t[ERROR] Invalid Bytes Object\n", 30);
 		return;
 	}
 
 	bytes_size = ((PyVarObject *)p)->ob_size;
-	printf("  size: %lu\n", bytes_size);
+	printf("\tsize: %lu\n", bytes_size);
 	try_str = ((PyBytesObject *)p)->ob_sval;
-	printf("  trying string: %s\n", try_str);
+	printf("\ttrying string: %s\n", try_str);
 	n_bytes = bytes_size > 9 ? 10 : bytes_size + 1;
-	printf("  first %lu bytes:", n_bytes);
+	printf("\tfirst %lu bytes:", n_bytes);
 	for (i = 0; i < n_bytes; i++)
 	{
 		printf(" %02x", (unsigned char)try_str[i]);
