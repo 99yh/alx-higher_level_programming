@@ -1,6 +1,7 @@
 #include <Python.h>
 #include <stddef.h>
 #include <string.h>
+#include <stdio.h>
 
 /**
  * print_python_bytes - prints infos about a python list
@@ -11,23 +12,21 @@ void print_python_bytes(PyObject *p)
 	Py_ssize_t bytes_size, n_bytes, i;
 	char *try_str;
 
-	write(STDOUT_FILENO, "[.] bytes object info\n", 22);
+	printf("[.] bytes object info\n");
 	if (p == NULL || strcmp((p->ob_type)->tp_name, "bytes") != 0)
 	{
-		write(STDOUT_FILENO, "\t[ERROR] Invalid Bytes Object\n", 30);
+		printf("  [ERROR] Invalid Bytes Object\n");
 		return;
 	}
 
 	bytes_size = ((PyVarObject *)p)->ob_size;
-	printf("\tsize: %lu\n", bytes_size);
 	try_str = ((PyBytesObject *)p)->ob_sval;
-	printf("\ttrying string: %s\n", try_str);
 	n_bytes = bytes_size > 9 ? 10 : bytes_size + 1;
-	printf("\tfirst %lu bytes:", n_bytes);
+	printf("  size: %lu\n", bytes_size);
+	printf("  trying string: %s\n", try_str);
+	printf("  first %lu bytes:", n_bytes);
 	for (i = 0; i < n_bytes; i++)
-	{
 		printf(" %02x", (unsigned char)try_str[i]);
-	}
 	putchar('\n');
 }
 
@@ -40,13 +39,13 @@ void print_python_list(PyObject *p)
 	Py_ssize_t idx, list_size, Allocated;
 	const char *item_type;
 
-	write(STDOUT_FILENO, "[*] Python list info\n", 21);
 	if (p && PyList_CheckExact(p))
 	{
 		list_size = PyList_GET_SIZE(p);
 		Allocated = ((PyListObject *)p)->allocated;
-		printf("[*] Size of the Python List = %lu\n[*] Allocated = %lu\n",
-											list_size, Allocated);
+		printf("[*] Python list info\n");
+		printf("[*] Size of the Python List = %lu\n", list_size);
+		printf("[*] Allocated = %lu\n", Allocated);
 
 		for (idx = 0; idx < list_size; idx++)
 		{
