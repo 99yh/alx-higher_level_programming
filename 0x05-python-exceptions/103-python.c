@@ -17,6 +17,7 @@ void print_python_list(PyObject *p)
 	const char *item_type;
 	PyObject *item;
 
+	fflush(stdout);
 	printf("[*] Python list info\n");
 	if (p == NULL || PyList_CheckExact(p) == 0)
 	{
@@ -53,6 +54,7 @@ void print_python_bytes(PyObject *p)
 	Py_ssize_t bytes_size, n_bytes, i;
 	char *try_str;
 
+	fflush(stdout);
 	printf("[.] bytes object info\n");
 	if (p == NULL || strcmp((p->ob_type)->tp_name, "bytes") != 0)
 	{
@@ -83,6 +85,7 @@ void print_python_float(PyObject *p)
 	double value;
 	char tail[3] = {0, '0', 0};
 
+	fflush(stdout);
 	printf("[.] float object info\n");
 	if (p == NULL || strcmp((p->ob_type)->tp_name, "float") != 0)
 	{
