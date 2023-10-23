@@ -14,7 +14,7 @@ void print_python_float(PyObject *p);
 void print_python_list(PyObject *p)
 {
 	Py_ssize_t idx, list_size, Allocated;
-	const char *item_name;
+	const char *item_type;
 	PyObject *item;
 
 	printf("[*] Python list info\n");
@@ -33,12 +33,12 @@ void print_python_list(PyObject *p)
 	for (idx = 0; idx < list_size; idx++)
 	{
 		item = PyList_GET_ITEM(p, idx);
-		item_name = item->ob_type->tp_name;
-		printf("Element %lu: %s\n", idx, item_name);
+		item_type = item->ob_type->tp_name;
+		printf("Element %lu: %s\n", idx, item_type);
 
-		if (strcmp(item_name, "bytes") == 0)
+		if (strcmp(item_type, "bytes") == 0)
 			print_python_bytes(PyList_GET_ITEM(p, idx));
-		else if (strcmp(item_name, "float") == 0)
+		else if (strcmp(item_type, "float") == 0)
 			print_python_float(PyList_GET_ITEM(p, idx));
 	}
 	fflush(stdout);
@@ -81,7 +81,7 @@ void print_python_bytes(PyObject *p)
 void print_python_float(PyObject *p)
 {
 	double value;
-	char tail[2] = {'\0', '0'};
+	char tail[3] = {0, '0', 0};
 
 	printf("[.] float object info\n");
 	if (p == NULL || strcmp((p->ob_type)->tp_name, "float") != 0)
