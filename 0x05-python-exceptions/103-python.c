@@ -14,9 +14,10 @@ void print_python_float(PyObject *p);
 void print_python_list(PyObject *p)
 {
 	Py_ssize_t idx, list_size, Allocated;
-	const char *item_name;
+	const char *item_type;
 	PyObject *item;
 
+	fflush(stdout);
 	printf("[*] Python list info\n");
 	if (p == NULL || PyList_CheckExact(p) == 0)
 	{
@@ -33,12 +34,12 @@ void print_python_list(PyObject *p)
 	for (idx = 0; idx < list_size; idx++)
 	{
 		item = PyList_GET_ITEM(p, idx);
-		item_name = item->ob_type->tp_name;
-		printf("Element %lu: %s\n", idx, item_name);
+		item_type = item->ob_type->tp_name;
+		printf("Element %lu: %s\n", idx, item_type);
 
-		if (strcmp(item_name, "bytes") == 0)
+		if (strcmp(item_type, "bytes") == 0)
 			print_python_bytes(PyList_GET_ITEM(p, idx));
-		else if (strcmp(item_name, "float") == 0)
+		else if (strcmp(item_type, "float") == 0)
 			print_python_float(PyList_GET_ITEM(p, idx));
 	}
 	fflush(stdout);
@@ -53,6 +54,7 @@ void print_python_bytes(PyObject *p)
 	Py_ssize_t bytes_size, n_bytes, i;
 	char *try_str;
 
+	fflush(stdout);
 	printf("[.] bytes object info\n");
 	if (p == NULL || strcmp((p->ob_type)->tp_name, "bytes") != 0)
 	{
@@ -83,6 +85,7 @@ void print_python_float(PyObject *p)
 	double val;
 	char *repr;
 
+	fflush(stdout);
 	printf("[.] float object info\n");
 	if (p == NULL || strcmp((p->ob_type)->tp_name, "float") != 0)
 	{
@@ -92,6 +95,7 @@ void print_python_float(PyObject *p)
 
 	val = ((PyFloatObject *)p)->ob_fval;
 	repr = PyOS_double_to_string(val, 'r', 0, 2, NULL);
+	/* go to file pystrtod.h and .c */
 
 	printf("  value: %s\n", repr);
 	fflush(stdout);
