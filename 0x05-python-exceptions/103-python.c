@@ -80,8 +80,8 @@ void print_python_bytes(PyObject *p)
  */
 void print_python_float(PyObject *p)
 {
-	double value;
-	char tail[2] = {'\0', '0'};
+	double val;
+	char *repr;
 
 	printf("[.] float object info\n");
 	if (p == NULL || strcmp((p->ob_type)->tp_name, "float") != 0)
@@ -90,9 +90,9 @@ void print_python_float(PyObject *p)
 		return;
 	}
 
-	value = ((PyFloatObject *)p)->ob_fval;
-	if (value == floor(value))
-		tail[0] = '.';
-	printf("  value: %.16g%s\n", value, tail);
+	val = ((PyFloatObject *)p)->ob_fval;
+	repr = PyOS_double_to_string(val, 'r', 0, 2, NULL);
+
+	printf("  value: %s\n", repr);
 	fflush(stdout);
 }
