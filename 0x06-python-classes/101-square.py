@@ -139,8 +139,33 @@ class Square:
           ###
           ###
         """
-        if self.__size == 0:
-            print()
-            return None
+        print(self)
+
+    def __str__(self):
+        """
+        Give the shape of the square.
+
+        this works when a Square object called
+        by ``str(object)``, ``print(object)`` etc.
+
+        Examples
+        --------
+        >>> my_square = Square(2)
+        >>> shape = str(my_square)
+        >>> print(shape)
+        ##
+        ##
+        >>> my_square.size = 0
+        >>> print(my_square)
+        <BLANKLINE>
+        >>> my_square.size = 3
+        >>> my_square.position = (2, 1)
+        >>> print(my_square)
+        <BLANKLINE>
+          ###
+          ###
+          ###
+        """
         line = ' ' * self.__position[0] + '#' * self.__size + '\n'
-        print('\n' * self.__position[1] + line * self.__size, end='')
+        sqr = '\n' * self.__position[1] + line * self.__size
+        return sqr[:-1]
