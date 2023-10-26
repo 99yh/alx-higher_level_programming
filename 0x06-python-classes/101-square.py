@@ -24,6 +24,7 @@ class Square:
     """
 
     def __init__(self, size=0, position=(0, 0)):
+        """Make a square."""
         self.size = size
         self.position = position
 
@@ -166,6 +167,8 @@ class Square:
           ###
           ###
         """
+        if self.__size == 0:
+            return ""
         line = ' ' * self.__position[0] + '#' * self.__size + '\n'
         sqr = '\n' * self.__position[1] + line * self.__size
         return sqr[:-1]
