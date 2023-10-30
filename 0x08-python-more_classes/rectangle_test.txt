@@ -1,0 +1,226 @@
+#!/usr/bin/python3 -m doctest
+The Rectangle Class
+*******************
+
+0. Simple rectangle::
+-------------------
+	
+	>>> Rectangle = __import__('0-rectangle').Rectangle
+	>>> my_rectangle = Rectangle()
+	>>> print(type(my_rectangle))
+	<class '0-rectangle.Rectangle'>
+	>>> print(my_rectangle.__dict__)
+	{}
+
+
+1. Real definition of a rectangle::
+---------------------------------
+	
+	>>> Rectangle = __import__('1-rectangle').Rectangle
+	>>> my_rectangle = Rectangle(2, 4)
+	>>> print(my_rectangle.__dict__)
+	{'_Rectangle__height': 4, '_Rectangle__width': 2}
+	>>> my_rectangle.width = 10
+	>>> my_rectangle.height = 3
+	>>> print(my_rectangle.__dict__)
+	{'_Rectangle__height': 3, '_Rectangle__width': 10}
+	>>> my_rectangle.width = -6
+	Traceback (most recent call last):
+		~~~
+	ValueError: width must be >= 0
+	>>> my_rectangle.height = -26
+	Traceback (most recent call last):
+		~~~
+	ValueError: height must be >= 0
+	>>> my_rectangle.height = "an integer"
+	Traceback (most recent call last):
+		~~~
+	TypeError: height must be an integer
+	>>> my_rectangle.width = "int"
+	Traceback (most recent call last):
+		~~~
+	TypeError: width must be an integer
+	>>> my_rectangle = Rectangle()
+	>>> print(my_rectangle.__dict__)
+	{'_Rectangle__height': 0, '_Rectangle__width': 0}
+	>>> my_rectangle = Rectangle((2, 4))
+	Traceback (most recent call last):
+		~~~
+	TypeError: width must be an integer
+
+
+2. Area and Perimeter:
+---------------------
+
+	same as #1 but with area and perim.
+	>>> Rectangle = __import__('2-rectangle').Rectangle
+	>>> my_rectangle = Rectangle(2, 4)
+	>>> my_rectangle.area()
+	8
+	>>> my_rectangle.perimeter()
+	12
+	>>> my_rectangle.width = 6
+	>>> my_rectangle.area()
+	24
+	>>> my_rectangle.perimeter()
+	20
+	>>> my_rectangle.width = 0
+	>>> my_rectangle.perimeter()
+	0
+
+3. String representation:
+------------------------
+
+	same as #2 with __str__
+	>>> Rectangle = __import__('3-rectangle').Rectangle
+	>>> my_rectangle = Rectangle(2, 4)
+	>>> print(my_rectangle)
+	##
+	##
+	##
+	##
+	>>> my_rectangle.width = 0
+	>>> print(my_rectangle)
+	<BLANKLINE>
+	>>> my_rectangle.width = 10
+	>>> print(my_rectangle)
+	##########
+	##########
+	##########
+	##########
+	>>> print(repr(my_rectangle)) # doctest: +ELLIPSIS
+	<3-rectangle.Rectangle object at ...>
+	>>> print(my_rectangle.__dict__)
+	{'_Rectangle__height': 4, '_Rectangle__width': 10}
+
+4. Eval is magic:
+-----------------
+
+	same as #3 with __repr__
+	>>> Rectangle = __import__('4-rectangle').Rectangle
+	>>> my_rectangle = Rectangle(2, 4)
+	>>> print(my_rectangle)
+	##
+	##
+	##
+	##
+	>>> new_rectangle = eval(repr(my_rectangle))
+	>>> print(new_rectangle)
+	##
+	##
+	##
+	##
+	>>> new_rectangle is my_rectangle
+	False
+	>>> str(new_rectangle) == str(my_rectangle)
+	True
+	>>> repr(my_rectangle)
+	'Rectangle(2, 4)'
+
+
+5. Detect instance deletion:
+---------------------------
+
+	same as #4 with __del__
+	>>> Rectangle = __import__('5-rectangle').Rectangle
+	>>> my_rectangle = Rectangle(2, 4)
+	>>> del my_rectangle
+	Bye rectangle...
+	>>> try:
+	...		print(my_rectangle)
+	... except Exception as e:
+	...		print("[{}] {}".format(e.__class__.__name__, e))
+	...
+	[NameError] name 'my_rectangle' is not defined
+
+
+6. How many instances:
+----------------------
+
+	same as #5 with	``number_of_instances``
+	>>> Rectangle = __import__('6-rectangle').Rectangle
+	>>> Rectangle.number_of_instances
+	0
+	>>> my_rectangle = Rectangle(2, 4)
+	>>> Rectangle.number_of_instances
+	1
+	>>> ur_rectangle = Rectangle(3, 5)
+	>>> Rectangle.number_of_instances
+	2
+	>>> del my_rectangle
+	Bye rectangle...
+	>>> Rectangle.number_of_instances
+	1
+	>>> del ur_rectangle
+	Bye rectangle...
+	>>> Rectangle.number_of_instances
+	0
+
+
+7. Change representation:
+------------------------
+
+	same as #6 with	``print_symbol``
+	>>> Rectangle = __import__('7-rectangle').Rectangle
+	>>> my_rectangle = Rectangle(2, 4)
+	>>> ur_rectangle = Rectangle(3, 4)
+	>>> print(my_rectangle)
+	##
+	##
+	##
+	##
+	>>> Rectangle.print_symbol = "C"
+	>>> my_rectangle.print_symbol = "%"
+	>>> print(my_rectangle)
+	%%
+	%%
+	%%
+	%%
+	>>> print(ur_rectangle)
+	CCC
+	CCC
+	CCC
+	CCC
+	>>> ur_rectangle.print_symbol = ['C', 'fun!']
+	>>> print(ur_rectangle)
+	['C', 'fun!']['C', 'fun!']['C', 'fun!']
+	['C', 'fun!']['C', 'fun!']['C', 'fun!']
+	['C', 'fun!']['C', 'fun!']['C', 'fun!']
+	['C', 'fun!']['C', 'fun!']['C', 'fun!']
+	>>> del (my_rectangle, ur_rectangle)
+	Bye rectangle...
+	Bye rectangle...
+
+
+ 8. Compare rectangles:
+-----------------------
+
+	same as #7 with static method ``bigger_than_or_equal``
+	>>> Rectangle = __import__('8-rectangle').Rectangle
+	>>> my_rectangle = Rectangle(1, 10)
+	>>> ur_rectangle = Rectangle(2,	8)
+	>>> my_rectangle is Rectangle.bigger_than_or_equal(my_rectangle, ur_rectangle)
+	False
+	>>> my_rectangle.width = 2
+	>>> my_rectangle is Rectangle.bigger_than_or_equal(my_rectangle, ur_rectangle)
+	True
+	>>> ur_rectangle.height = 10
+	>>> my_rectangle is Rectangle.bigger_than_or_equal(my_rectangle, ur_rectangle)
+	True
+	>>> del (my_rectangle, ur_rectangle)
+	Bye rectangle...
+	Bye rectangle...
+
+
+9. A square is a rectangle:
+---------------------------
+
+	same as #8 with class method ``square``
+	>>> Rectangle = __import__('9-rectangle').Rectangle
+	>>> my_square = Rectangle.square(3)
+	>>> print(my_square)
+	###
+	###
+	###
+	>>> del my_square
+	Bye rectangle...
