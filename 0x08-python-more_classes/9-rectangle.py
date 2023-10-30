@@ -70,7 +70,7 @@ class Rectangle:
         print('Bye rectangle...')
 
     @staticmethod
-    def bigger_than_or_equal(rect_1, rect_2):
+    def bigger_or_equal(rect_1, rect_2):
         """Compare two rectangles according to area."""
         if type(rect_1) is not Rectangle:
             raise TypeError("rect_1 must be an instance of Rectangle")

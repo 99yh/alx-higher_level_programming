@@ -195,17 +195,17 @@ The Rectangle Class
  8. Compare rectangles:
 -----------------------
 
-	same as #7 with static method ``bigger_than_or_equal``
+	same as #7 with static method ``bigger_or_equal``
 	>>> Rectangle = __import__('8-rectangle').Rectangle
 	>>> my_rectangle = Rectangle(1, 10)
 	>>> ur_rectangle = Rectangle(2,	8)
-	>>> my_rectangle is Rectangle.bigger_than_or_equal(my_rectangle, ur_rectangle)
+	>>> my_rectangle is Rectangle.bigger_or_equal(my_rectangle, ur_rectangle)
 	False
 	>>> my_rectangle.width = 2
-	>>> my_rectangle is Rectangle.bigger_than_or_equal(my_rectangle, ur_rectangle)
+	>>> my_rectangle is Rectangle.bigger_or_equal(my_rectangle, ur_rectangle)
 	True
 	>>> ur_rectangle.height = 10
-	>>> my_rectangle is Rectangle.bigger_than_or_equal(my_rectangle, ur_rectangle)
+	>>> my_rectangle is Rectangle.bigger_or_equal(my_rectangle, ur_rectangle)
 	True
 	>>> del (my_rectangle, ur_rectangle)
 	Bye rectangle...
