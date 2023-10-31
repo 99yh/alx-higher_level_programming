@@ -1,0 +1,59 @@
+----------------------------
+The ``0-add_integer`` Module
+----------------------------
+
+Using ``add_integer``
+---------------------
+
+This is example of the tests in reStructuredText (reST) format.
+
+	>>> add_integer = __import__('0-add_integer').add_integer
+
+Testing integer values::
+
+	>>> add_integer(0)
+	98
+	>>> add_integer(3, 6)
+	9
+	>>> add_integer(0, 0)
+	0
+	>>> add_integer(123, -123)
+	0
+	>>> add_integer(-34, -3)
+	-37
+
+Testing float values::
+
+	>>> add_integer(0.11)
+	98
+	>>> add_integer(3.6, 6.7)
+	9
+	>>> add_integer(0.1, 0.9)
+	0
+	>>> add_integer(23, -23.7)
+	0
+	>>> add_integer(-34.4, -3.8)
+	-37
+
+Testing non numeric values::
+
+	>>> add_integer(24, "nine")
+	Traceback (most recent call last):
+		~~~
+	TypeError: b must be an integer
+	>>> add_integer("3.6", 6.7)
+	Traceback (most recent call last):
+		~~~
+	TypeError: a must be an integer
+	>>> add_integer("20", "39")
+	Traceback (most recent call last):
+		~~~
+	TypeError: a must be an integer
+	>>> add_integer((4, 6))
+	Traceback (most recent call last):
+		~~~
+	TypeError: a must be an integer
+	>>> add_integer("I am an int, believe me")
+	Traceback (most recent call last):
+		~~~
+	TypeError: a must be an integer
