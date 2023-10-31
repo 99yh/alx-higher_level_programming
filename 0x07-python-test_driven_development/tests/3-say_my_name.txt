@@ -1,0 +1,42 @@
+Say my name Module
+******************
+
+Function ``say_my_name``::
+------------------------
+
+    >>> say_my_name = __import__('3-say_my_name').say_my_name
+
+    Normal use cases
+
+    >>> say_my_name("Jane", "Doe")
+    My name is Jane Doe
+    >>> say_my_name("Jane")
+    My name is Jane 
+
+    Exceptions raising
+
+    >>> say_my_name(1337, "Code")
+    Traceback (most recent call last):
+        ~~~
+    TypeError: first_name must be a string
+    >>> say_my_name("Agent", 47)
+    Traceback (most recent call last):
+        ~~~
+    TypeError: last_name must be a string
+    >>> say_my_name(None, None)
+    Traceback (most recent call last):
+        ~~~
+    TypeError: first_name must be a string
+
+    Edge Cases
+
+    >>> say_my_name("", "Doe")
+    My name is  Doe
+    >>> say_my_name(" ", "Doe")
+    My name is   Doe
+    >>> say_my_name("jAnE", "doe")
+    My name is jAnE doe
+    >>> say_my_name(" jane  ", "  doe")
+    My name is  jane     doe
+    >>> say_my_name("!#$@#%", "Doe")
+    My name is !#$@#% Doe
