@@ -9,6 +9,7 @@ This is example of the tests in reStructuredText (reST) format.
 
 	>>> add_integer = __import__('0-add_integer').add_integer
 
+
 Testing integer values::
 
 	>>> add_integer(0)
@@ -22,6 +23,7 @@ Testing integer values::
 	>>> add_integer(-34, -3)
 	-37
 
+
 Testing float values::
 
 	>>> add_integer(0.11)
@@ -34,6 +36,15 @@ Testing float values::
 	0
 	>>> add_integer(-34.4, -3.8)
 	-37
+	>>> add_integer(float('NaN'), 5)
+	Traceback (most recent call last):
+		~~~
+	ValueError: cannot convert float NaN to integer
+	>>> add_integer(float('inf'), 5)
+	Traceback (most recent call last):
+		~~~
+	OverflowError: cannot convert float infinity to integer
+
 
 Testing non numeric values::
 

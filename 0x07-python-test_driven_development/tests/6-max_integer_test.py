@@ -13,7 +13,7 @@ class TestMaxInteger(unittest.TestCase):
         self.assertEqual(max_integer([1, 4, 3]), 4)
         self.assertEqual(max_integer([-1, -4, -3]), -1)
         self.assertEqual(max_integer([1, 5, -9, 3, 5]), 5)
-        self.assertEqual(max_integer([0]), 0)
+        self.assertEqual(max_integer([2]), 2)
 
     def test_edges(self):
         """Test with edge test cases."""

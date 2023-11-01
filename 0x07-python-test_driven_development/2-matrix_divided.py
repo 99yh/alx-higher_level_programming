@@ -45,18 +45,20 @@ def matrix_check(matrix, div=1):
     TypeError: rows in ``matrix`` does not have the same size
     """
     siz = -1
+    err = "matrix must be a matrix (list of lists) of integers/floats"
     if type(matrix) is not list:
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+        raise TypeError(err)
     for row in matrix:
         if type(row) is not list:
-            raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+            raise TypeError(err)
         if siz == -1:
             siz = len(row)
         elif siz != len(row):
-            raise TypeError("Each row of the matrix must have the same size")
+            raise TypeError(
+                "Each row of the matrix must have the same size")
         for elem in row:
             if type(elem) is not int and type(elem) is not float:
-                raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+                raise TypeError(err)
 
     if type(div) is not int and type(div) is not float:
         raise TypeError("div must be a number")

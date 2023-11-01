@@ -40,3 +40,9 @@ Function ``say_my_name``::
     My name is  jane     doe
     >>> say_my_name("!#$@#%", "Doe")
     My name is !#$@#% Doe
+    >>> try:
+    ...        say_my_name()
+    ... except TypeError:
+    ...        print("Failed")
+    ...
+    Failed
