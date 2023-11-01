@@ -14,11 +14,15 @@ def text_indentation(text):
         raise TypeError("text must be a string")
     _text = ""
     line = ""
+    c = '\n'
     for c in text:
         line = line + c
-        if c in ".?:\n":
-            _text = _text + line.lstrip() + '\n' * 2 * (c != '\n')
+        if c == '\n':
+            _text = _text + line.strip() + '\n'
             line = ""
-    print(_text)
-
-Module ``5-text_indentation``
+        if c in ".?:":
+            _text = _text + line.strip() + '\n' * 2
+            line = ""
+    if c not in ".?:\n":
+        _text = _text + line.strip()
+    print(_text, end="")
