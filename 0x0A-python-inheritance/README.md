@@ -1,0 +1,3 @@
+## Inheritance
+
+class Child(Parent, ...):

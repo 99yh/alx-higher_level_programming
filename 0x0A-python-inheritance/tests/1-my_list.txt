@@ -1,0 +1,57 @@
+Unit Testing for the MyList module using doctest module
+*******************************************************
+
+	>>> MyList = __import__('1-my_list').MyList
+	>>> L1 = MyList()
+	>>> L1.append(1)
+	>>> L1.append(4)
+	>>> L1.append(2)
+	>>> L1.append(5)
+	>>> L1.append(3)
+	>>> L1
+	[1, 4, 2, 5, 3]
+	>>> L1.print_sorted()
+	[1, 2, 3, 4, 5]
+	>>> L1
+	[1, 4, 2, 5, 3]
+	>>> L2 = MyList()
+	>>> L2
+	[]
+	>>> L2.print_sorted()
+	[]
+	>>> L2.append(2)
+	>>> L2.append(2)
+	>>> L2.append(2)
+	>>> L2.append(2)
+	>>> L2.append(2)
+	>>> L2
+	[2, 2, 2, 2, 2]
+	>>> L1.pop()
+	3
+	>>> L1
+	[1, 4, 2, 5]
+	>>> L1.pop(0)
+	1
+	>>> L1
+	[4, 2, 5]
+	>>> L1.pop()
+	5
+	>>> L1.pop()
+	2
+	>>> L1
+	[4]
+	>>> L1.print_sorted()
+	[4]
+	>>> L1.append(-1)
+	>>> L1.append(-2)
+	>>> L1.append(-5)
+	>>> L1.append(-3)
+	>>> L1
+	[4, -1, -2, -5, -3]
+	>>> L1.print_sorted()
+	[-5, -3, -2, -1, 4]
+	>>> L1[0] = -4
+	>>> L1
+	[-4, -1, -2, -5, -3]
+	>>> L1.print_sorted()
+	[-5, -4, -3, -2, -1]
