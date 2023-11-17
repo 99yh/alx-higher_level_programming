@@ -5,6 +5,7 @@
 class Base:
     """The Father of them all."""
     __nb_objects = 0
+
     def __init__(self, id=None):
         """Initialize the base class."""
         if id is not None:

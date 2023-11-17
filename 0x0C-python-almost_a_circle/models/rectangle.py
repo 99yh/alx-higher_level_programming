@@ -15,7 +15,7 @@ class Rectangle(base.Base):
         super().__init__(id)
 
     @staticmethod
-    def number_validator(name, value, min = 0):
+    def number_validator(name, value, min=0):
         """Validate values before using it."""
         if type(value) is not int:
             raise TypeError(f"{name} must be an integer")
@@ -78,7 +78,9 @@ class Rectangle(base.Base):
 
     def __str__(self):
         """Represent the calss in an informal way."""
-        return f"[Rectangle] ({self.id}) {self.x}/{self.y} - {self.width}/{self.height}"
+        repr = f"[Rectangle] ({self.id}) {self.x}/{self.y}"
+        repr += f" - {self.width}/{self.height}"
+        return repr
 
     def update(self, *args, **kwargs):
         """Update the attributes of the rectangle."""
@@ -104,4 +106,7 @@ class Rectangle(base.Base):
 
     def to_dictionary(self):
         """Get a dictionary represtation of the Rectangle object."""
-        return {'id': self.id, 'width': self.width, 'height': self.height, 'x': self.x, 'y': self.y}
+        data = {'id': self.id, 'width': self.width, 'height': self.height}
+        data['x'] = self.x
+        data['y'] = self.y
+        return data
