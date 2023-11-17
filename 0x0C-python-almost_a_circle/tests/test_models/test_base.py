@@ -6,9 +6,10 @@ from models.base import Base
 
 class TestBase(unittest.TestCase):
     """Test the Base Class."""
+
     def setUp(self):
-        """Set the tests up."""
-        pass
+        """Set up number of object to 0 before each test case."""
+        Base._Base__nb_objects = 0
 
     def test_normal(self):
         """Test normal usage of the class."""
@@ -20,7 +21,4 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b2.id, 2)
         self.assertEqual(b3.id, 7)
         self.assertEqual(b4.id, 3)
-
-    def test_raises(self):
-        """Test wrong usage of the class."""
-        pass
+        del b1, b2, b3, b4
