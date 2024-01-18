@@ -9,7 +9,7 @@ USE hbtn_0d_usa;
 -- create table if not exists
 CREATE TABLE IF NOT EXISTS city (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-	name VARCHAR(256),
+	name VARCHAR(256) NOT NULL,
 	state_id INT NOT NULL,
 	FOREIGN KEY (state_id)
 		REFERENCES states(id)
