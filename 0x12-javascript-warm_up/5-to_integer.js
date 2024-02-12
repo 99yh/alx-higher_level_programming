@@ -1,5 +1,5 @@
 #!/usr/bin/node
 const arg = process.argv[2];
 
-if (isNaN(arg)) console.log('Not a Number');
-else console.log(`My Number: ${Math.floor(arg)}`);
+if (isNaN(arg)) console.log('Not a number');
+else console.log(`My number: ${Math.floor(arg)}`);
