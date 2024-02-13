@@ -7,4 +7,3 @@ for (const prop in dict) {
   newDict[dict[prop]].push(prop);
 }
 console.log(newDict);
-exports = newDict;
