@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Here is the definition of a class to be mapped as a SQL table"""
 
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import (Column, Integer, String)

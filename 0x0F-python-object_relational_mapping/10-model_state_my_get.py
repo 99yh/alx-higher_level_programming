@@ -8,7 +8,7 @@ from sqlalchemy.orm import sessionmaker
 
 if __name__ == "__main__":
     engine = create_engine(
-        'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
+        'mysql+mysqldb://{}:{}@sqlab:3306/{}'.format(
             argv[1], argv[2], argv[3]
         ), pool_pre_ping=True)
 
@@ -20,4 +20,7 @@ if __name__ == "__main__":
         .filter(State.name.collate('utf8mb4_bin') == argv[4])\
         .first()
 
-    print(query.id)
+    if query:
+        print(query.id)
+    else:
+        print("Not found")
