@@ -5,8 +5,8 @@ import requests
 
 
 if __name__ == '__main__':
-    try:
-        res = requests.get(argv[1])
+    res = requests.get(argv[1])
+    if res.ok:
         print(res.text)
-    except requests.HTTPError as e:
-        print("Error code: {}".format(e.code))
+    else:
+        print("Error code: {}".format(res.status_code))
