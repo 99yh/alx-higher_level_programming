@@ -10,4 +10,4 @@ if __name__ == '__main__':
         with urlopen(argv[1]) as res:
             print(res.read().decode('utf8'))
     except HTTPError as e:
-        print("Error Code: {}".format(e.code))
+        print("Error code: {}".format(e.code))
