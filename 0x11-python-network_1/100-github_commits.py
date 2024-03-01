@@ -8,7 +8,9 @@ if __name__ == '__main__':
     params = {'per_page': 10}
     res = requests.get(url, params=params)
     all = res.json()
-    for commit in res.json():
-        sha = commit.get('sha')
-        author = dict(commit.get('author')).get('name')
+    if type(all) is not list:
+        all = []
+    for commit in all:
+        sha = commit['sha']
+        author = commit['commit']['author']['name']
         print(f'{sha}: {author}')
